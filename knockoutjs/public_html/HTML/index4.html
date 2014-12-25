@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>index_0_1</title>
+        <script type="text/javascript" src="../JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="../JS/knockout-3.2.0.js"></script>
+        <script type="text/javascript">
+           jQuery(document).ready(function () {
+
+                var obj = {
+                    firstName : ko.observable('Karat'),
+                    lastName : ko.observable('Kamu')
+                };
+
+                obj.fullName = ko.computed(function (){
+                    return obj.firstName() + " " + obj.lastName();
+                });
+
+                obj.fullName.subscribe(function (value){
+                    console.log('Some one has change the full name to' + value);
+                });
+
+                ko.applyBindings(obj);
+
+            });
+        </script>
+    </head>
+    <body>
+        First Name : <input data-bind=" value : firstName " size="30"/><br/>
+        Last Name : <input data-bind=" value : lastName " size="30"/><br/>
+        First Name : <input data-bind=" value : firstName " size="30"/><br/>
+        Last Name : <input data-bind=" value : lastName " size="30"/><br/>
+        First Name : <input data-bind=" value : firstName " size="30"/><br/>
+        Last Name : <input data-bind=" value : lastName " size="30"/><br/>
+        <p> Name: <span data-bind=" text : fullName "></span></p>
+    </body>
+</html>

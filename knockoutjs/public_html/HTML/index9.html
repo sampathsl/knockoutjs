@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>index_0_1</title>
+        <script type="text/javascript" src="../JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="../JS/knockout-3.2.0.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+
+                function Friend(name, java, javascript) {
+                    this.name = ko.observable(name);
+                    this.knowJava = ko.observable(java);
+                    this.knowJS = ko.observable(javascript);
+                    this.removeFriend = function(){
+                        obj.friends.remove(this);
+                    };
+                }
+
+                var obj = {
+                    friends : ko.observableArray([
+                        new Friend('Kolla1 Kolla1', true, true),
+                        new Friend('Kolla2 Kolla2', true, false),
+                        new Friend('Kolla3 Kolla3', false, false)])
+                };
+
+                obj.addFriend = function(){
+                    obj.friends.push(new Friend('Unknown',false,false));
+                };
+
+                ko.applyBindings(obj);
+
+            });
+        </script>
+    </head>
+    <body>
+
+    <p><label>Your current number of friends:</label><span data-bind="text : friends().length"></span></p>
+    
+        <ul data-bind="foreach:friends">
+            <li>
+                <span data-bind="text:name"></span>
+                <input type="checkbox" data-bind="checked:knowJava"/>
+                <input type="checkbox" data-bind="checked:knowJS"/>
+            </li>
+        </ul>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Know Java</th>
+                    <th>Know JS</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach:friends" style="text-align: center;">
+                <tr>
+                    <td><input type="text" data-bind="value:name , valueUpdate:'keyup' "></span></td>
+                    <td><input type="checkbox" data-bind="checked:knowJava"/></td>
+                    <td><input type="checkbox" data-bind="checked:knowJS"/></td>
+                    <td><input type="button" data-bind="click:removeFriend" value="Remove Friend"/></td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        <input type="button" data-bind="click:addFriend , enable : friends().length < 5" value="Add a new Friend"/>
+
+    </body>
+</html>

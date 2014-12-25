@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>index_0_1</title>
+        <script type="text/javascript" src="../JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="../JS/knockout-3.2.0.js"></script>
+        <script type="text/javascript">
+           jQuery(document).ready(function () {
+
+                var obj = {
+                    firstName : 'FirstName'
+                };
+
+                ko.applyBindings(obj);
+
+            });
+        </script>
+    </head>
+    <body>
+        Value :<input data-bind=" value : firstName " size="30"/><br/>
+        First Name :<input data-bind=" text : firstName " size="30"/>
+        <p>First Name :<span data-bind=" text : firstName "></span></p>
+    </body>
+</html>

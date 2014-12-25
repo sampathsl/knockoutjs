@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>index_0_1</title>
+        <script type="text/javascript" src="../JS/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="../JS/knockout-3.2.0.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+
+                function Friend(name, java, javascript) {
+                    this.name = ko.observable(name);
+                    this.knowJava = ko.observable(java);
+                    this.knowJS = ko.observable(javascript);
+                }
+
+                var obj = {
+                    friends: ko.observableArray([
+                        new Friend('Feeling Good1', true, true),
+                        new Friend('Feeling Good2', true, false),
+                        new Friend('Feeling Good3', false, false)])
+                };
+
+                ko.applyBindings(obj);
+
+            });
+        </script>
+    </head>
+    <body>
+
+        <ul data-bind="foreach:friends">
+            <li>
+                <span data-bind="text:name"></span>
+                <input type="checkbox" data-bind="checked:knowJava"/>
+                <input type="checkbox" data-bind="checked:knowJS"/>
+            </li>
+        </ul>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Know Java</th>
+                    <th>Know JS</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach:friends" style="text-align: center;">
+                <tr>
+                    <td><span data-bind="text:name"></span></td>
+                    <td><input type="checkbox" data-bind="checked:knowJava"/></td>
+                    <td><input type="checkbox" data-bind="checked:knowJS"/></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </body>
+</html>
